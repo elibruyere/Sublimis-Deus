@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="la">
+<head>
+      <link rel="icon" href="favicon-32x32.png" type="image/png">
+  <meta charset="UTF-8">
+  <title>Veterum Sapientia — Analyse</title>
+  <style>
+    body {
+      font-family: serif;
+      line-height: 1.6;
+      padding: 2em;
+      background: #f8f9fa;
+    }
+    .word {
+      cursor: pointer;
+      padding: 0 2px;
+      border-radius: 4px;
+    }
+    .nominative { background-color: #fff59d; }
+    .accusative { background-color: #a5d6a7; }
+    .genitive { background-color: #90caf9; }
+    .dative { background-color: #ffcc80; }
+    .ablative { background-color: #ef9a9a; }
+    .vocative { background-color: #ce93d8; }
+    .locative { background-color: #A47864; }
+    .verb { color: black; font-style: italic; }
+
+    #info-box {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      padding: 1em;
+      font-size: 0.9em;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="text">
+  <p>
+    <span class="word nominative" data-info="Paulus : nom propre, nominatif singulier, sujet → Paul">Paulus</span>
+    <span class="word nominative" data-info="Papa : nom commun masculin, nominatif singulier, apposition → pape">Papa</span>
+    <span class="word nominative" data-info="tertius : adjectif numéral, nominatif singulier masculin, épithète → troisième">tertius</span>
+    <span class="word dative" data-info="Universis : adjectif, datif pluriel, épithète de 'fidelibus' → à tous">Universis</span>
+    <span class="word genitive" data-info="Christi : nom propre, génitif singulier, complément de 'fidelibus' → du Christ">Christi</span>
+    <span class="word dative" data-info="fidelibus : nom masculin, datif pluriel, COI → aux fidèles">fidelibus</span>
+    <span class="word accusative" data-info="praesentes : adjectif, accusatif pluriel féminin, épithète de 'litteras' → présentes">praesentes</span>
+    <span class="word accusative" data-info="litteras : nom féminin, accusatif pluriel, COD de 'inspecturis' → lettres">litteras</span>
+    <span class="word dative" data-info="inspecturis : participe futur actif, datif pluriel, complément circonstanciel → à ceux qui les liront">inspecturis</span>
+    <span class="word accusative" data-info="salutem : nom féminin, accusatif singulier, COD implicite de 'dicit' → salut">salutem</span>
+    <span class="word accusative" data-info="et : conjonction de coordination → et">et</span>
+    <span class="word accusative" data-info="Apostolicam : adjectif, accusatif singulier féminin, épithète de 'benedictionem' → apostolique">Apostolicam</span>
+    <span class="word accusative" data-info="benedictionem : nom féminin, accusatif singulier, complément de 'dicit' sous-entendu → bénédiction">benedictionem</span>.
+  </p>
+</div>
+
+<div id="info-box"></div>
+
+<script>
+  const words = document.querySelectorAll('.word');
+  const infoBox = document.getElementById('info-box');
+
+  words.forEach(word => {
+    word.addEventListener('click', () => {
+      infoBox.textContent = word.dataset.info;
+      infoBox.style.display = 'block';
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('word')) {
+      infoBox.style.display = 'none';
+    }
+  });
+</script>
